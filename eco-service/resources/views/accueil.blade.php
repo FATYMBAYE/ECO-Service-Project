@@ -47,7 +47,7 @@
     <div class="row justify-content-center">
         <div class="col-auto text-center">
             <p class="fw-bold display-6"><span>La démarche zéro déchet, c'est quoi ?</span></p>
-            <p class="text-center">La démarche zéro déchet est une approche écoresponsable visant à réduire la
+            <p class="text-center mt-5">La démarche zéro déchet est une approche écoresponsable visant à réduire la
                 quantité de déchets générés par les activités humaines, en privilégiant des
                 pratiques durables et respectueuses de l'environnement. Cette philosophie repose
                 sur cinq principes clés, souvent résumés par les <b>"5R"</b>.</p>
@@ -150,7 +150,7 @@
         <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
             <div class="product-card">
                 <img src="{{ asset('img/e3.jpg') }}" alt="Product 3" class="img-fluid">
-                <div class="product-name">Gourdes en acier/verre</div>
+                <div class="product-name">Gourdes en acier - verre</div>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
@@ -167,6 +167,9 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </div>
 
 
