@@ -9,4 +9,5 @@ Route::get('/', function () {
 
 Route::get('/accueil', [EcoController::class, 'index'])->name('accueil');
 Route::get('/catalogue', [EcoController::class, 'catalogue'])->name('catalogue');
+Route::get('/detailprod', [EcoController::class, 'detailprod'])->name('detailprod');
 Route::get('/panier', [EcoController::class, 'panier'])->name('panier');

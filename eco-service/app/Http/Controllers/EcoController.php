@@ -19,4 +19,8 @@ class EcoController extends Controller
     {
         return view('panier');
     }
+    public function detailprod()
+    {
+        return view('detail_product');
+    }
 }

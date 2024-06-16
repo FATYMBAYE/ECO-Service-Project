@@ -19,8 +19,7 @@
                                     <p class="prix_text">Prix <span>€30</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e5.jpg') }}" alt="Product 1"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
-                                        <a href="#" class="seemore_bt">voir plus</a>
+                                        <a href="{{ route('detailprod') }}" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +29,6 @@
                                     <p class="prix_text">Prix <span>€10</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e2.jpg') }}" alt="Product 2"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
                                         <a href="#" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
@@ -41,7 +39,6 @@
                                     <p class="prix_text">Prix <span>€20</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e1.jpg') }}" alt="Product 3"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
                                         <a href="#" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
@@ -62,7 +59,6 @@
                                     <p class="prix_text">Prix <span>€20</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e1.jpg') }}" alt="Product 4"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
                                         <a href="#" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
@@ -73,7 +69,6 @@
                                     <p class="prix_text">Prix <span>€40</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e4.png') }}" alt="Product 5"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
                                         <a href="#" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
@@ -84,7 +79,6 @@
                                     <p class="prix_text">Prix <span>€20</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e1.jpg') }}" alt="Product 6"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
                                         <a href="#" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
@@ -105,7 +99,6 @@
                                     <p class="prix_text">Prix <span>€30</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e5.jpg') }}" alt="Product 7"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
                                         <a href="#" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
@@ -116,7 +109,6 @@
                                     <p class="prix_text">Prix <span>€25</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e3.jpg') }}" alt="Product 8"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
                                         <a href="#" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
@@ -127,7 +119,6 @@
                                     <p class="prix_text">Prix <span>€10</span></p>
                                     <div class="prod_img"><img src="{{ asset('img/e2.jpg') }}" alt="Product 9"></div>
                                     <div class="btn_main">
-                                        <a href="#" class="buy_bt">Acheter</a>
                                         <a href="#" class="seemore_bt">voir plus</a>
                                     </div>
                                 </div>
@@ -148,5 +139,25 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </div>
+<!-- Floating Cart Icon -->
+<div class="floating-cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+</div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize cart count from localStorage
+        var cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
+        $('.cart-count').text(cartCount);
+
+        $('.add-to-cart').click(function() {
+            cartCount += 1;
+            $('.cart-count').text(cartCount);
+            localStorage.setItem('cartCount', cartCount);
+            alert('Added 1 item to cart');
+        });
+    });
+</script>
 @endsection
