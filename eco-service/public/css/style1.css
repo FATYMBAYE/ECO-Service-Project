@@ -1,3 +1,4 @@
+
 .catalogue_section {
     padding-bottom: 200px;
 }
@@ -72,4 +73,7 @@
     text-align: right;
     margin-top: auto;
     align-self: flex-end;
+}
+.ml-3{
+    margin-left: 10px;
 }

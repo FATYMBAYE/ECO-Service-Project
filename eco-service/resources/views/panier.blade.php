@@ -2,7 +2,7 @@
 
 @section('page-content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+<link rel="stylesheet" href="{{ asset('css/style1.css') }}">
 <div class="container mt-5">
     <br><br><br>
     <h1 class="mb-5"><span>Mon Panier</span></h1>
@@ -11,9 +11,9 @@
     </div>
 
     <div class="row mt-4">
-        <div class="col-md-8">
-            <button class="mb-5 btn btn-primary mr-2" id="continue-shopping">Continuer mes achats</button>
-            <button id="emptyCart" class="btn btn-danger mb-2">
+        <div class="col-md-8 d-flex align-items-center">
+            <button class="btn btn-primary" id="continue-shopping">Continuer mes achats</button>
+            <button id="emptyCart" class="btn btn-danger ml-3">
                 <i class="fas fa-trash-alt"></i> Vider le panier
             </button>
         </div>
