@@ -5,159 +5,67 @@
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="catalogue_section">
-    <div id="main_slider" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <!-- First Slide -->
-            <div class="carousel-item active">
-                <div class="container">
-                    <h1 class="catalogue_title">Les types de produits éco-responsables</h1>
-                    <div class="catalogue_section_2">
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Dentifrice solide ou en poudre</h4>
-                                    <p class="prix_text">Prix <span>€30</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e5.jpg') }}" alt="Product 1"></div>
-                                    <div class="btn_main">
-                                        <a href="{{ route('detailprod') }}" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Cotons-tiges réutilisables</h4>
-                                    <p class="prix_text">Prix <span>€10</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e2.jpg') }}" alt="Product 2"></div>
-                                    <div class="btn_main">
-                                        <a href="#" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Brosse à dents en bambou</h4>
-                                    <p class="prix_text">Prix <span>€20</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e1.jpg') }}" alt="Product 3"></div>
-                                    <div class="btn_main">
-                                        <a href="#" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
+    <div class="container">
+        <h1 class="catalogue_title">Les types de produits éco-responsables</h1>
+        <div class="catalogue_section_2">
+            <div class="row">
+                @foreach($products as $product)
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="card box_main h-100">
+                        <img src="{{ asset($product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title prod_text">{{ $product->name }}</h4>
+                            <p class="card-text prix_text">Prix <span>€{{ $product->price }}</span></p>
+                            <div class="mt-auto d-flex justify-content-end">
+                                <a href="{{ route('detailprod', ['id' => $product->id]) }}" class="btn btn-dark-green seemore_bt">Voir plus</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Second Slide -->
-            <div class="carousel-item">
-                <div class="container">
-                    <h1 class="catalogue_title">Les types de produits éco-responsables</h1>
-                    <div class="catalogue_section_2">
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Brosse à dents en bambou</h4>
-                                    <p class="prix_text">Prix <span>€20</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e1.jpg') }}" alt="Product 4"></div>
-                                    <div class="btn_main">
-                                        <a href="#" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Essuie-tout réutilisable</h4>
-                                    <p class="prix_text">Prix <span>€40</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e4.png') }}" alt="Product 5"></div>
-                                    <div class="btn_main">
-                                        <a href="#" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Brosse à dents en bambou</h4>
-                                    <p class="prix_text">Prix <span>€20</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e1.jpg') }}" alt="Product 6"></div>
-                                    <div class="btn_main">
-                                        <a href="#" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Third Slide -->
-            <div class="carousel-item">
-                <div class="container">
-                    <h1 class="catalogue_title">Les types de produits éco-responsables</h1>
-                    <div class="catalogue_section_2">
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Dentifrice solide ou en poudre</h4>
-                                    <p class="prix_text">Prix <span>€30</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e5.jpg') }}" alt="Product 7"></div>
-                                    <div class="btn_main">
-                                        <a href="#" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Gourdes en acier/verres</h4>
-                                    <p class="prix_text">Prix <span>€25</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e3.jpg') }}" alt="Product 8"></div>
-                                    <div class="btn_main">
-                                        <a href="#" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 mb-4">
-                                <div class="box_main">
-                                    <h4 class="prod_text">Cotons-tiges réutilisables</h4>
-                                    <p class="prix_text">Prix <span>€10</span></p>
-                                    <div class="prod_img"><img src="{{ asset('img/e2.jpg') }}" alt="Product 9"></div>
-                                    <div class="btn_main">
-                                        <a href="#" class="seemore_bt">voir plus</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#main_slider" data-bs-slide="prev">
-            <i class="fas fa-angle-left"></i>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#main_slider" data-bs-slide="next">
-            <i class="fas fa-angle-right"></i>
-        </button>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </div>
+
 <!-- Floating Cart Icon -->
 <div class="floating-cart">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-count">0</span>
 </div>
 
+<div class="floating-empty-cart">
+    <button id="emptyCart" class="btn btn-danger mb-2">
+        <i class="fas fa-trash-alt"></i> Vider le panier
+    </button>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
 <script>
     $(document).ready(function() {
         // Initialize cart count from localStorage
         var cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
         $('.cart-count').text(cartCount);
 
+        // Function to empty the cart
+        $('#emptyCart').click(function() {
+            cartCount = 0;
+            $('.cart-count').text(cartCount);
+            localStorage.setItem('cartCount', cartCount);
+            alert('Le panier a été vidé.');
+        });
+
+        // Add to cart functionality
         $('.add-to-cart').click(function() {
             cartCount += 1;
             $('.cart-count').text(cartCount);
             localStorage.setItem('cartCount', cartCount);
-            alert('Added 1 item to cart');
+            alert('Ajouté 1 article au panier');
         });
     });
 </script>
+
 @endsection

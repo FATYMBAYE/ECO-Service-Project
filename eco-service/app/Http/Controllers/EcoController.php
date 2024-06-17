@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,14 +14,16 @@ class EcoController extends Controller
     }
     public function catalogue()
     {
-        return view('catalogue');
+        $products = Product::all();
+        return view('catalogue', compact('products'));
     }
     public function panier()
     {
         return view('panier');
     }
-    public function detailprod()
+    public function show($id)
     {
-        return view('detail_product');
+        $product = Product::findOrFail($id);
+        return view('detail_product', compact('product'));
     }
 }

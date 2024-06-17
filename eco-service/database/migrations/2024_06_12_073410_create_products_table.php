@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('image')->nullable();
+            $table->string('name'); // Champ pour le nom du produit
+            $table->text('description')->nullable(); // Champ pour la description (optionnel)
+            $table->decimal('price', 10, 2); // Champ pour le prix (10 chiffres max, 2 décimales)
+            $table->integer('quantity')->default(0); // Champ pour la quantité en stock, par défaut à 0
+            $table->timestamps(); // Champs pour les dates de création et de mise à jour
         });
     }
 
