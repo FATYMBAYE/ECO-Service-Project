@@ -19,7 +19,7 @@
                 <button class="btn btn-outline-secondary" id="increaseQuantity">+</button>
             </div>
             <div class="btn_main mt-3">
-                <button class="btn btn-primary" id="addToCart">Ajouter au panier</button>
+                <button class="btn btn-primary" id="addToCart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->price }}">Ajouter au panier</button>
             </div>
         </div>
     </div>
@@ -46,6 +46,9 @@
         // Initialise le nombre de panier depuis localStorage
         var cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
         $('.cart-count').text(cartCount);
+
+        // Initialise le panier depuis localStorage
+        var cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
 
         function checkStock() {
             if (stock <= 0) {
@@ -79,11 +82,31 @@
         });
 
         $('#addToCart').click(function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            var price = $(this).data('price');
             var quantity = parseInt(quantityInput.val());
+
             if (quantity <= stock) {
+                // Construire l'objet du produit à ajouter au panier
+                var productToAdd = {
+                    id: id,
+                    name: name,
+                    price: price,
+                    quantity: quantity
+                };
+
+                // Ajouter le produit au panier
+                cartItems.push(productToAdd);
+
+                // Mettre à jour localStorage avec les produits du panier
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+                // Mettre à jour le compteur du panier
                 cartCount += quantity;
                 $('.cart-count').text(cartCount);
                 localStorage.setItem('cartCount', cartCount);
+
                 alert('Ajouté ' + quantity + ' article(s) au panier');
             } else {
                 alert('Stock insuffisant.');
