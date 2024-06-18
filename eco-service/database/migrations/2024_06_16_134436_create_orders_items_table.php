@@ -28,6 +28,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders__items');
+       
+         Schema::disableForeignKeyConstraints();
+         Schema::dropIfExists('orders_items');
+        // Réactiver les contraintes de clé étrangère
+        Schema::enableForeignKeyConstraints();
+       
     }
 };
