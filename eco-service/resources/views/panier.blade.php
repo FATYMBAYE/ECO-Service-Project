@@ -73,8 +73,6 @@
         updateCartView();
 
         $('#continue-shopping').click(function() {
-            localStorage.removeItem('cartItems');
-            localStorage.setItem('cartCount', '0');
             window.location.href = "{{ route('catalogue') }}";
         });
 

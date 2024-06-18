@@ -112,6 +112,15 @@
                 alert('Stock insuffisant.');
             }
         });
+
+        $('#emptyCart').click(function() {
+            // Vider le panier
+            localStorage.removeItem('cartItems');
+            localStorage.setItem('cartCount', '0');
+            cartItems = [];
+            $('.cart-count').text('0');
+            alert('Le panier a été vidé.');
+        });
     });
 </script>
 @endsection
