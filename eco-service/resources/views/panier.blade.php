@@ -19,35 +19,34 @@
         </div>
         <div class="col-md-4 text-right">
             <h4>Total: <span id="cart-total">€0</span></h4>
-            <button class="mb-5 btn btn-success" id="checkout">Passer la commande</button>
         </div>
     </div>
 
-    <!-- Formulaire des détails de l'utilisateur -->
-    <div id="user-details-form" style="display:none;">
-        <h2>Informations de livraison</h2>
-        <form id="payment-form" method="POST" action="{{ route('process-payment') }}">
+    <!-- Formulaire pour recueillir les informations client -->
+    <div class="mt-4">
+        <form id="payment-form">
             @csrf
             <div class="form-group">
-                <label for="customer_firstname'">Nom</label>
-                <input type="text" class="form-control" id="customer_firstname" name="customer_firstname'" required>
+                <label for="first_name">Prénom</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" required>
             </div>
             <div class="form-group">
-                <label for="customer_lastname">Prénom</label>
-                <input type="text" class="form-control" id="customer_lastname" name="customer_lastname" required>
+                <label for="last_name">Nom</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" required>
             </div>
             <div class="form-group">
-                <label for="shipping_address">Adresse de livraison</label>
-                <input type="text" class="form-control" id="shipping_address" name="shipping_address" required>
+                <label for="address">Adresse de livraison</label>
+                <input type="text" class="form-control" id="address" name="address" required>
             </div>
             <input type="hidden" id="total_amount" name="total_amount">
-            <input type="hidden" id="cart-items-data" name="cart_items">
-            <button type="submit" class="btn btn-primary">Procéder au paiement</button>
+            <input type="hidden" id="cart_items" name="cart_items">
         </form>
+        <div id="paypal-button-container"></div>
     </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}&currency=EUR"></script>
 <script>
     $(document).ready(function() {
         var cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
@@ -112,6 +111,10 @@
             var productId = $(this).closest('.card-body').find('.product-id').val();
             var index = cartItems.findIndex(item => item.id == productId);
 
+            console.log('Product ID:', productId);
+            console.log('Index found:', index);
+            console.log('Cart Items:', cartItems);
+
             if (index !== -1) {
                 var deletedItem = cartItems[index];
                 var deletedQuantity = deletedItem.quantity;
@@ -129,15 +132,42 @@
             }
         });
 
-        $('#checkout').click(function() {
-            $('#order-total').val(calculateCartTotal());
-            $('#cart-items-data').val(JSON.stringify(cartItems));
-            $('#user-details-form').show();
-            $('html, body').animate({
-                scrollTop: $("#user-details-form").offset().top
-            }, 1000);
-        });
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                $('#total_amount').val(calculateCartTotal());
+                $('#cart_items').val(JSON.stringify(cartItems));
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: calculateCartTotal()
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Sauvegarder les informations de la commande dans la base de données
+                    $.post("{{ route('process-payment') }}", $('#payment-form').serialize())
+                        .done(function(response) {
+                            alert('Paiement réussi !');
+                            // Vider le panier après le paiement
+                            localStorage.removeItem('cartItems');
+                            localStorage.setItem('cartCount', '0');
+                            cartItems = [];
+                            updateCartView();
+                            $('.cart-count').text('0');
+                        }).fail(function(error) {
+                            alert('Une erreur est survenue lors de la sauvegarde de la commande.');
+                        });
+                });
+            },
+            onCancel: function(data) {
+                alert('Paiement annulé.');
+            },
+            onError: function(err) {
+                alert('Une erreur est survenue lors du paiement.');
+            }
+        }).render('#paypal-button-container');
     });
 </script>
-
 @endsection
