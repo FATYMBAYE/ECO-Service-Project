@@ -13,18 +13,10 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-    'paypal' => [
-        'client_id' => env('PAYPAL_CLIENT_ID'),
-        'secret' => env('PAYPAL_SECRET'),
-        'settings' => [
-            'mode' => env('PAYPAL_MODE', 'sandbox'),
-            'http.ConnectionTimeOut' => 30,
-            'log.LogEnabled' => true,
-            'log.FileName' => storage_path('logs/paypal.log'),
-            'log.LogLevel' => 'ERROR'
-        ],
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
     ],
-
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
