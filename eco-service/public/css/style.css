@@ -178,8 +178,9 @@ span {
 
 .footer {
     position: relative;
-    padding: 60px 0 0 0;
+    padding: 60px 0;
     background: #111111;
+    z-index: 1;
 }
 
 .footer .footer-widget {
@@ -353,4 +354,46 @@ span {
     width: 300px;
     height: 300px;
     object-fit: cover;
+}
+
+.contact {
+    position: relative;
+    padding: 25px 0 15px 0;
+}
+
+.contact .contact-form,
+.contact .contact-info {
+    margin-bottom: 45px;
+}
+
+.contact .contact-info h4 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.contact .contact-info p {
+    text-align: justify;
+}
+
+.mb-1 {
+    margin-top: 120px;
+
+}
+
+.visitor-menu {
+    margin-top: 100px;
+}
+
+.visitor-menu .card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.visitor-menu .card:hover {
+    transform: scale(1.05);
+}
+
+.visitor-menu .icon {
+    font-size: 50px;
+    color: #28a745;
 }

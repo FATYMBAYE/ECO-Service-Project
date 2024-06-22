@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('quotes', function (Blueprint $table) {
-            $table->id();
+            $table->id('idContact');
+            $table->string('nom');
+            $table->string('mail');
+            $table->text('service');
+            $table->text('message');
             $table->timestamps();
         });
     }

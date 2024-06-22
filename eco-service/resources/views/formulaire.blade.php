@@ -27,14 +27,13 @@
 
                 <ul class="navbar-nv justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link custom-text-color" href="{{ route('accueil') }}">Accueil</a>
+                        <a class="nav-link custom-text-color" href="{{ route('accueilpro') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="link custom-text-color" href="{{ route('catalogue') }}">Catalogue</a>
+                        <a class="link custom-text-color" href="{{ route('cataloguepro') }}">Catalogue</a>
                     </li>
-                    <li class="nav-item"><a class="link custom-text-color" href=" {{ route('panier') }}">
-                            <i class="fa fa-shopping-cart"></i>
-                            Mon Panier</a>
+                    <li class="nav-item">
+                        <a class="link custom-text-color" href="{{ route('formulaire') }}">Demande de de devis</a>
                     </li>
                     <li class="nav-item">
                         <a class="link custom-text-color" href="{{ route('menu') }}">Menu</a>
@@ -43,10 +42,53 @@
             </div>
         </nav>
     </div>
+    <!-- Contact Start -->
+    <div class="contact">
+        <div class="container mb-1">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    <div class="contact-form">
+                        <form action="{{ route('formulaire.store') }}" method="GET">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mb-2">
+                                    <input type="text" class="form-control" placeholder="Nom de votre entreprise" name="nom" />
+                                </div>
+                                <div class="form-group col-md-6 mb-2">
+                                    <input type="email" class="form-control" placeholder="votre email" name="mail" />
+                                </div>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="text" class="form-control" placeholder="Quel service voudriez vous auprès de nous ?" name="service" />
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control mb-2" rows="7" placeholder="Votre Message" name="message"></textarea>
+                            </div>
+                            <div><button class="btn btn-primary" type="submit">Envoyer</button></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <h3>Contactez-Nous pour votre demande de devis</h3>
+                        <p>
+                            N'hésitez pas à nous contacter pour toute demande de renseignements sur ce que nous faisons, pour fixer un rendez-vous dans notre association
+                            ou pour toute autre question. Nous sommes là pour vous aider et répondre à vos besoins. <br>
 
-    @yield('page-content')
-
-    <!-- Footer Start -->
+                            Nous nous engageons à vous faire un retour dans les plus brefs délais. <br><br>
+                            <em> Votre satisfaction est notre priorité, et nous sommes disponibles pour vous accompagner à chaque étape. Merci de nous faire confiance et de nous donner l'opportunité de vous aider.</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
     <div class="footer">
         <div class="container">
             <div class="row">

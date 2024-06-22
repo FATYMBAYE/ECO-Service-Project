@@ -24,29 +24,49 @@
                     <img src="{{ asset('img/eco_logo.png') }}" alt="Logo" width="70" height="60" class="d-inline-block align-text-top">
                     <span><b>Eco-Services</b></span>
                 </a>
-
-                <ul class="navbar-nv justify-content-center">
+                <!-- <ul class="navbar-nv justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link custom-text-color" href="{{ route('accueil') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="link custom-text-color" href="{{ route('catalogue') }}">Catalogue</a>
-                    </li>
-                    <li class="nav-item"><a class="link custom-text-color" href=" {{ route('panier') }}">
-                            <i class="fa fa-shopping-cart"></i>
-                            Mon Panier</a>
+                        <a class="nav-link custom-text-color" href="{{ route('accueilpro') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="link custom-text-color" href="{{ route('menu') }}">Menu</a>
+                        <a class="link custom-text-color" href="{{ route('cataloguepro') }}">Catalogue</a>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="link custom-text-color" href="{{ route('formulaire') }}">Demande de de devis</a>
+                    </li>
+                </ul> -->
             </div>
         </nav>
     </div>
-
-    @yield('page-content')
-
-    <!-- Footer Start -->
+    <div class="mb-1 container">
+        <h1 class="text-center">Bienvenue sur l'interface Web de Eco-services</h1>
+        <div class="visitor-menu">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <a href="{{ route('accueil') }}" class="text-decoration-none">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon mb-3"><i class="fas fa-user"></i></div>
+                                <h5 class="card-title">Particulier</h5>
+                                <p class="card-text">Accédez à nos services pour les particuliers.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <a href="{{ route('accueilpro') }}" class="text-decoration-none">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <div class="icon mb-3"><i class="fas fa-building"></i></div>
+                                <h5 class="card-title">Entreprise</h5>
+                                <p class="card-text">Découvrez nos solutions pour les entreprises.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="footer">
         <div class="container">
             <div class="row">

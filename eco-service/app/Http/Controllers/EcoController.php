@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\Orders_Item;
+use App\Models\Quote;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,21 @@ use Stripe\Charge;
 
 class EcoController extends Controller
 {
+    public function menu()
+    {
+        return view('menu');
+    }
     public function index()
     {
         return view('accueil');
+    }
+    public function accueilpro()
+    {
+        return view('accueilpro');
+    }
+    public function showcat()
+    {
+        return view('catalogue_services');
     }
     public function catalogue()
     {
@@ -83,5 +96,30 @@ class EcoController extends Controller
             // Gérer l'exception
             return back()->withError('Une erreur est survenue lors du paiement Stripe: ' . $ex->getMessage());
         }
+    }
+    public function form()
+    {
+        return view('formulaire');
+    }
+    public function formstore(Request $request)
+    {
+        // Validation des données du formulaire
+        $validatedData = $request->validate([
+            'nom' => 'required|string|max:255',
+            'mail' => 'required',
+            'service' => 'required',
+            'message' => 'required',
+        ]);
+
+        // Enregistrement des données dans la base de données
+        $quote = new Quote(); // Utilisez le modèle quote
+        $quote->nom = $validatedData['nom'];
+        $quote->mail = $validatedData['mail'];
+        $quote->service = $validatedData['service'];
+        $quote->message = $validatedData['message'];
+        $quote->save();
+
+        // Redirection vers une page de confirmation ou autre
+        return redirect()->route('formulaire')->with('success', 'Demande envoyée avec succès !');
     }
 }
