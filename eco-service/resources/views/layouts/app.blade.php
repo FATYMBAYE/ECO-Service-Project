@@ -8,9 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        crossorigin="anonymous" />
+
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -21,7 +21,8 @@
         <nav class="navbar navbar-marron fixed-top shadow">
             <div class="container-fluid">
                 <a class="navbar-brand text-light" href="">
-                    <img src="{{ asset('img/eco_logo.png') }}" alt="Logo" width="70" height="60" class="d-inline-block align-text-top">
+                    <img src="{{ asset('img/eco_logo.png') }}" alt="Logo" width="70" height="60"
+                        class="d-inline-block align-text-top">
                     <span><b>Eco-Services</b></span>
                 </a>
 
@@ -40,6 +41,16 @@
                         <a class="link custom-text-color" href="{{ route('menu') }}">Menu</a>
                     </li>
                 </ul>
+                        <li class="nav-item">
+                            <a class="nav-link custom-text-color" href="{{ route('accueil') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="link custom-text-color" href="{{ route('catalogue') }}">Catalogue</a>
+                        </li>
+                        <li class="nav-item"><a class="link custom-text-color" href=" {{ route('panier') }}">
+                                <i class="fa fa-shopping-cart"></i>
+                                Mon Panier</a>
+                        </li>
             </div>
         </nav>
     </div>
@@ -85,5 +96,7 @@
 
             <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 </html>

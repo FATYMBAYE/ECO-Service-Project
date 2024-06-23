@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EcoController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,3 +19,20 @@ Route::post('/process-payment', [EcoController::class, 'processPayment'])->name(
 Route::get('/panier', [EcoController::class, 'panier'])->name('panier');
 Route::get('/formulaire', [EcoController::class, 'form'])->name('formulaire');
 Route::get('/formulairestore', [EcoController::class, 'formstore'])->name('formulaire.store');
+Route::get('/panier', [EcoController::class, 'panier'])->name('panier');
+Route::get('/register', [AdminController::class, 'register'])->name('registration');
+Route::post('/register', [AdminController::class, 'handleRegistration'])->name('registration');
+Route::get('/login', [AdminController::class, 'login'])->name('login');
+Route::post('/login', [AdminController::class, 'handleLogin'])->name('login');
+
+
+Route::middleware(['auth'])->group(
+    function () {
+        Route::get('/list-contact', [EcoController::class, 'affichercontacts'])->name('listes-devis');
+        Route::get('/contact/{id}', [EcoController::class, 'deletequotes'])->name('quote.delete');
+        //route admin
+        route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+        Route::resource('/products', ProductController::class);
+        Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+    }
+);

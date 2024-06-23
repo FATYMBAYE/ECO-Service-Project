@@ -14,6 +14,7 @@ use Stripe\Charge;
 
 class EcoController extends Controller
 {
+    
     public function menu()
     {
         return view('menu');
@@ -44,6 +45,21 @@ class EcoController extends Controller
     {
         $product = Product::findOrFail($id);
         return view('detail_product', compact('product'));
+    }
+    public function deletequotes($id)
+    {
+        // Supprimez l'œuvre en utilisant l'ID
+        $quote = Quote::findOrFail($id);
+        $quote->delete();
+
+        // Redirigez l'utilisateur vers la liste des œuvres ou une autre page de votre choix
+        return redirect()->route('listes-devis');
+    }
+    public function affichercontacts()
+    {
+        $quotes = Quote::all();
+
+        return view('listes-devis', compact('quotes'));
     }
     public function processPayment(Request $request)
     {
