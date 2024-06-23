@@ -53,7 +53,6 @@ class AdminController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended('products.create');
-
         } else {
             //aucun élément trouvé
             return redirect()->back()->with('error', 'Informations de connexions non reconnus');
